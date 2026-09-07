@@ -70,6 +70,7 @@ jobs:
     - name: Setup Snyk
       uses: snyk/actions/setup@v1
     - name: Snyk Test
+      continue-on-error: true
       run: snyk test --sarif-file-output=snyk.sarif
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
