@@ -93,13 +93,13 @@ jobs:
         fetch-depth: 0
     - name: Install uv
       uses: astral-sh/setup-uv@v10.0.1
+    - name: Setup Snyk
+      uses: snyk/actions/setup@v1
     - name: Snyk Test
-      uses: snyk/actions/python@v1
       continue-on-error: true
+      run: snyk code test --sarif-file-output=snyk.sarif
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --sarif-file-output=snyk.sarif
     - name: Upload Snyk report to GitHub Advanced Security
       uses: github/codeql-action/upload-sarif@v4
       with:
