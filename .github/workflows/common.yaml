@@ -79,6 +79,7 @@ jobs:
       with:
         sarif_file: snyk.sarif
     - name: Snyk Monitor
+      if: github.ref == 'refs/heads/main'
       run: |
         snyk monitor \
           --project-name="weather_api"
