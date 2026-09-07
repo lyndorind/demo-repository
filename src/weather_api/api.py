@@ -9,6 +9,8 @@ def get_weather(city: str) -> dict[str, any]:
         "key": WEATHER_API_KEY
     }
 
+    data = None
+
     response = requests.get("https://api.weatherapi.com/v1/current.json", params=params)
     return response.json()["current"]
 
