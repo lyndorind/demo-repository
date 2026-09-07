@@ -69,7 +69,7 @@ jobs:
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: |
-        snyk test --sarif --sarif-file-output=snyk.sarif
+        snyk test --sarif-file-output=snyk.sarif
     - name: Upload Snyk report to GitHub Advanced Security
       uses: github/codeql-action/upload-sarif@v4
       with:
