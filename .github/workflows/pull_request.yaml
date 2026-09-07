@@ -79,7 +79,10 @@ jobs:
       with:
         sarif_file: snyk.sarif
     - name: Snyk Monitor
-      run: snyk monitor
+      run: |
+        snyk monitor \
+          --project-name="weather_api" \
+          --target-reference="${{ github.ref_name }}"
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
@@ -101,7 +104,13 @@ jobs:
       uses: snyk/actions/setup@v1
     - name: Snyk Test
       continue-on-error: true
-      run: snyk code test --sarif-file-output=snyk.sarif
+      run: |
+        snyk code test \
+          --report \
+          --project-name="weather_api" \
+          --target-name="${{ github.repository }}" \
+          --target-reference="${{ github.ref_name }}" \
+          --sarif-file-output=snyk.sarif
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     - name: Upload Snyk report to GitHub Advanced Security
