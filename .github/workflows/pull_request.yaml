@@ -81,8 +81,8 @@ jobs:
     - name: Snyk Monitor
       run: |
         snyk monitor \
-          --project-name="weather_api/dependencies" \
-          --target-reference="${{ github.ref_name }}"
+          --remote-repo-url="https://github.com/${{ github.repository }}" \
+          --project-name="weather_api/dependencies"
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
@@ -107,9 +107,8 @@ jobs:
       run: |
         snyk code test \
           --report \
+          --remote-repo-url="https://github.com/${{ github.repository }}" \
           --project-name="weather_api/code" \
-          --target-name="${{ github.repository }}" \
-          --target-reference="${{ github.ref_name }}" \
           --sarif-file-output=snyk.sarif
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
