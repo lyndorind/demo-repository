@@ -1,0 +1,67 @@
+[project]
+name = "demo-repository"
+description = "Demo project for CI/CD processes"
+dynamic = ["version"]
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+keywords = []
+requires-python = ">=3.12"
+dependencies = [
+    "requests==2.29.0",
+]
+
+[build-system]
+requires = ["setuptools>=84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "allure-pytest>=2.16.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/lyndorind/demo-repository"
+Source = "https://github.com/lyndorind/demo-repository"
+Documentation = "https://github.com/lyndorind/demo-repository/blob/main/README.md"
+Issues = "https://github.com/lyndorind/demo-repository/issues"
+
+[tool.uv]
+required-version = ">=0.12.6"
+default-groups = ["dev"]
+
+[tool.setuptools.dynamic]
+version = {attr = "weather_api.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+addopts = ["--cov", "--cov-report=xml", "--alluredir=allure-results"]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+relative_files = true
+omit = [
+    "**/__init__.py",
+    "**/__main__.py"
+]
+
+[tool.coverage.paths]
+source = ["src/"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.ruff]
+src = ["src"]
+fix = true
+show-fixes = true
+output-format = "full"
