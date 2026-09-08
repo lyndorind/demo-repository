@@ -220,13 +220,17 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@v5
 
+    - name: Show
+      run: ls -lah
+
     - name: Upload Allure Report History
       uses: actions/upload-artifact@v7
       with:
-        name: allure-results.zip
+        name: history.jsonl
         path: history.jsonl
         if-no-files-found: error
         retention-days: 7
+        compression: false
 
     - name: Publish Allure Report to Pull Request
       uses: allure-framework/allure-action@v0
