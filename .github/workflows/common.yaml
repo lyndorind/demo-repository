@@ -184,6 +184,7 @@ jobs:
   allure:
     name: Allure
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     needs: [unit-tests]
     permissions:
       contents: read
@@ -226,17 +227,7 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@v5
 
-    - name: Upload Allure Report History
-      uses: actions/upload-artifact@v7
-      with:
-        name: history.jsonl
-        path: history.jsonl
-        if-no-files-found: error
-        retention-days: 7
-        archive: false
-
     - name: Publish Allure Report to Pull Request
       uses: allure-framework/allure-action@v0
-      if: github.event_name == 'pull_request'
       with:
         remote-href: ${{ steps.deployment.outputs.page_url }}
