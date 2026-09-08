@@ -17,6 +17,7 @@ build-backend = "setuptools.build_meta"
 
 [dependency-groups]
 dev = [
+    "allure-pytest>=2.16.0",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
     "ruff>=0.16.6",
@@ -41,7 +42,7 @@ namespaces = false
 
 [tool.pytest.ini_options]
 minversion = "9.0"
-addopts = ["--cov", "--cov-report=xml"]
+addopts = ["--cov", "--cov-report=xml", "--alluredir=allure-results"]
 testpaths = ["tests"]
 
 [tool.coverage.run]
