@@ -8,7 +8,11 @@ license-files = ["LICENSE"]
 keywords = []
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "opentelemetry-distro[otlp]>=0.65b0",
     "requests==2.29.0",
+    "uvicorn[standard]>=0.52.4",
 ]
 
 [build-system]
@@ -34,7 +38,7 @@ required-version = ">=0.12.6"
 default-groups = ["dev"]
 
 [tool.setuptools.dynamic]
-version = {attr = "weather_api.__version__"}
+version = {attr = "backend_server.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
