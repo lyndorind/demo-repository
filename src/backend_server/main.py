@@ -6,6 +6,6 @@ app = FastAPI()
 
 
 @app.get("/timezone/{city}")
-async def timezone(city: str):
+async def timezone(city: str) -> dict[str, str]:
     timezone = get_timezone(city)
     return {"timezone": timezone}
