@@ -1,0 +1,50 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+exporters:
+  prometheus_remote_write:
+    http:
+      endpoint: https://prometheus-prod-65-prod-eu-west-2.grafana.net/api/prom/push
+      auth:
+        authenticator: basicauth/prometheus
+  otlp_http/loki:
+    endpoint: https://logs-prod-012.grafana.net/otlp
+    auth:
+      authenticator: basicauth/loki
+  otlp_grpc/tempo:
+    endpoint: tempo-prod-10-prod-eu-west-2.grafana.net:443
+    auth:
+      authenticator: basicauth/tempo
+  #debug:
+  #  verbosity: detailed # basic
+
+extensions:
+  health_check:
+  basicauth/prometheus:
+    client_auth:
+      username: "3572914"
+      password: "${env:GRAFANA_CLOUD_API_TOKEN}"
+  basicauth/loki:
+    client_auth:
+      username: "1782132"
+      password: "${env:GRAFANA_CLOUD_API_TOKEN}"
+  basicauth/tempo:
+    client_auth:
+      username: "1776433"
+      password: "${env:GRAFANA_CLOUD_API_TOKEN}"
+
+service:
+  extensions: [health_check,basicauth/prometheus,basicauth/loki,basicauth/tempo]
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus_remote_write]
+    logs:
+      receivers: [otlp]
+      exporters: [otlp_http/loki]
+    traces:
+      receivers: [otlp]
+      exporters: [otlp_grpc/tempo]

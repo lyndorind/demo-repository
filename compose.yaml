@@ -1,0 +1,20 @@
+name: opentelemetry
+services:
+  opentelemetry-collector:
+    image: otel/opentelemetry-collector-contrib:0.160.0
+    container_name: opentelemetry-collector
+    hostname: opentelemetry-collector
+    environment:
+      GRAFANA_CLOUD_API_TOKEN: ${GRAFANA_CLOUD_API_TOKEN:?Grafana Cloud token is not set!}
+    volumes:
+    - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+    - 4317:4317
+    extra_hosts:
+    - "tempo-prod-10-prod-eu-west-2.grafana.net:18.198.199.36"
+    networks:
+    - opentelemetry
+
+networks:
+  opentelemetry:
+    name: opentelemetry
