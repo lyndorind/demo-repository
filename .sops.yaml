@@ -1,0 +1,4 @@
+creation_rules:
+- path_regex: compose(\.enc)?\.yaml$
+  encrypted_regex: '^(GRAFANA_CLOUD_API_TOKEN)$'
+  age: age1aamqqz8kefgalnc8qfe3f0muktr3ca9w37mcn2smyhz5v92t3fvsg5h2gj

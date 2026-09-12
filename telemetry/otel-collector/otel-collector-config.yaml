@@ -18,8 +18,6 @@ exporters:
     endpoint: tempo-prod-10-prod-eu-west-2.grafana.net:443
     auth:
       authenticator: basicauth/tempo
-  #debug:
-  #  verbosity: detailed # basic
 
 extensions:
   health_check:

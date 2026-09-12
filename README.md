@@ -13,3 +13,10 @@ Launch the application:
 ```bash
 uv run python -m backend_server
 ```
+
+Work with secrets:
+
+```bash
+sops --encrypt compose.yaml > compose.enc.yaml
+sops --decrypt compose.enc.yaml > compose.yaml
+```

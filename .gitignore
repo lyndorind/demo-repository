@@ -17,3 +17,7 @@ coverage.xml
 allure-results/
 allure-report/
 history.jsonl
+
+# Encryption
+key.txt
+compose.yaml
