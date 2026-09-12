@@ -26,6 +26,24 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.16.6",
 ]
+otlp = [
+    "opentelemetry-instrumentation-asyncio==0.65b0",
+    "opentelemetry-instrumentation-click==0.65b0",
+    "opentelemetry-instrumentation-dbapi==0.65b0",
+    "opentelemetry-instrumentation-exceptions==0.65b0",
+    "opentelemetry-instrumentation-fastapi==0.65b0",
+    "opentelemetry-instrumentation-grpc==0.65b0",
+    "opentelemetry-instrumentation-httpx==0.65b0",
+    "opentelemetry-instrumentation-logging==0.65b0",
+    "opentelemetry-instrumentation-requests==0.65b0",
+    "opentelemetry-instrumentation-sqlite3==0.65b0",
+    "opentelemetry-instrumentation-starlette==0.65b0",
+    "opentelemetry-instrumentation-threading==0.65b0",
+    "opentelemetry-instrumentation-tortoiseorm==0.65b0",
+    "opentelemetry-instrumentation-urllib==0.65b0",
+    "opentelemetry-instrumentation-urllib3==0.65b0",
+    "opentelemetry-instrumentation-wsgi==0.65b0",
+]
 
 [project.urls]
 Homepage = "https://github.com/lyndorind/demo-repository"
@@ -33,9 +51,12 @@ Source = "https://github.com/lyndorind/demo-repository"
 Documentation = "https://github.com/lyndorind/demo-repository/blob/main/README.md"
 Issues = "https://github.com/lyndorind/demo-repository/issues"
 
+[project.scripts]
+backend-server = "backend_server:main"
+
 [tool.uv]
 required-version = ">=0.12.6"
-default-groups = ["dev"]
+default-groups = ["otlp", "dev"]
 
 [tool.setuptools.dynamic]
 version = {attr = "backend_server.__version__"}
