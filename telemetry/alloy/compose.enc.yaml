@@ -1,0 +1,47 @@
+name: alloy
+services:
+    alloy:
+        image: grafana/alloy:v1.19.2
+        container_name: alloy
+        hostname: alloy
+        command:
+            - run
+            - --server.http.listen-addr=0.0.0.0:12345
+            - --storage.path=/var/lib/alloy/data
+            - /etc/alloy/config.alloy
+        environment:
+            GRAFANA_CLOUD_API_TOKEN: ENC[AES256_GCM,data:XveLyKiNdkoVv63fwOGjlL3OJ5N+atMbctAgfoRhi5luror4fLymXXwIsoEOPGCsHxCeJ/sQLvBGTny1ba5xWFEHfmLGRTDgdby27ElVUJ1EiiqluGbzFRkrEWidsocQqGFcsuodzi3MgPm+ji5OtnUBnVywUVM3QgqWuY4KrKQbd+C5ij9E6LGYi4VqufYw0WrFfW/qUDoYp8++,iv:Ju1OSCAiTq3/xGo2eSEP0tCG7GmEWtVFXK0C7hfx/aI=,tag:AuVd+hmz0WOskjYBkJ9mDQ==,type:str]
+        volumes:
+            - ./config.remote.alloy:/etc/alloy/config.alloy
+            - alloy:/var/lib/alloy/data
+        ports:
+            - 12345:12345
+            - 4317:4317
+        networks:
+            - alloy
+volumes:
+    alloy:
+        name: alloy
+networks:
+    alloy:
+        name: alloy
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1aamqqz8kefgalnc8qfe3f0muktr3ca9w37mcn2smyhz5v92t3fvsg5h2gj
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBGVm0yNzFkQWlWc0lFc3lD
+            MC9VTlhKTzRvZktWTEFqT0ZPTSsrdnNVRjBNCjl3cmJEalhjZ2hRVFYxZHh2a1Y4
+            RjBiaEtBazZBbGs1Ny9lT05mOFp3OEkKLS0tIG1iOVl4ZkdudHpJZC9LUVZSZnRZ
+            T3NJZTZadVY1a1FVTlgwcmFUSy8vM1UKBuYxceljrHLsTm/ga/FYsLPJ9aITilgT
+            qgrBjrVOpv3I6nmO3WKxekKvG/JNlJy7r97Z5l9Db23A3H/rwmzrJg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-09-12T20:54:41Z"
+    mac: ENC[AES256_GCM,data:jm9fRnDAH8httx8YGDVzMzNnXnvc2Oe7eOSgjRDlx/zqZ4FHvC6ZyG5tPhIm2ZuYGbK7LhK1N29vFaGyxVyTGFAPwM8VRQRA/HaLIzHCPE4ee8LnV0Y1u9ML7TcvTGaQq728PBWKSVtoKUaRggqSO95TFudLaqO+VrokzfkAfms=,iv:Z8i0csZblpjx3X6d5H9eM+U3wU3g2fERiuCpUed1ew4=,tag:n7jo+kVwYX3aj6GHfazXfw==,type:str]
+    pgp: []
+    encrypted_regex: ^(GRAFANA_CLOUD_API_TOKEN)$
+    version: 3.7.3

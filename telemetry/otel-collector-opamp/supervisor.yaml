@@ -1,0 +1,23 @@
+server:
+  endpoint: https://fleet-management-prod-011.grafana.net/v1/opamp
+  headers:
+    Authorization: "Basic ${env:GCLOUD_BASIC_AUTH_BASE64}"
+
+capabilities:
+  reports_effective_config: true
+  accepts_remote_config: true
+  reports_remote_config: true
+
+agent:
+  executable: /otelcol-contrib
+  description:
+    identifying_attributes:
+      service.name: otelcol
+      cluster: prod
+      purpose: demo
+  args: [--feature-gates, service.AllowNoPipelines]
+  env:
+    GCLOUD_BASIC_AUTH_BASE64: "${env:GCLOUD_BASIC_AUTH_BASE64}"
+
+storage:
+  directory: /etc/otel/supervisor-data

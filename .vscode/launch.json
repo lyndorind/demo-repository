@@ -1,25 +1,16 @@
 {
     "configurations": [
         {
-            "name": "Python Debugger: Module",
+            "name": "Python Debugger: Weather API",
             "type": "debugpy",
             "request": "launch",
             "module": "weather_api"
         },
          {
-            "name": "Python Debugger: FastAPI",
+            "name": "Python Debugger: Backend Server",
             "type": "debugpy",
             "request": "launch",
-            "module": "uvicorn",
-            "args": [
-                "backend_server:app",
-                "--host",
-                "0.0.0.0",
-                "--port",
-                "8000",
-                "--workers",
-                "1"
-            ]
+            "module": "backend_server"
         }
     ]
 }

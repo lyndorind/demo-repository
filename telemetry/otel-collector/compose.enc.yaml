@@ -1,0 +1,37 @@
+name: opentelemetry
+services:
+    opentelemetry-collector:
+        image: otel/opentelemetry-collector-contrib:0.160.0
+        container_name: opentelemetry-collector
+        hostname: opentelemetry-collector
+        environment:
+            GRAFANA_CLOUD_API_TOKEN: ENC[AES256_GCM,data:pGuFFk5DEhI6Za94yVV/DIxYTkEaKBM6H9kQJHSrweEXvZ2XYGPl3sZlPvK9dd5P9DJAznDZQucr5dWhvF27yDPTDZlbhFCM6IA3My2uiv2laLjXj/BY+vHmOSz7F0rPt3edJa50sqkEAf8rF3PXUgR49GRePPqjGSmkCLBvq2mbcAP/HVvKRW40pgHX0DCI5jg22cWLqzHtaCRo,iv:HVPAXiJ6oqDeGhuw761uZ4FM5wxbXjDeEeXz8sPWF7k=,tag:2+CaXc7YRyirGHH5DjwBXQ==,type:str]
+        volumes:
+            - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+        ports:
+            - 4317:4317
+        networks:
+            - opentelemetry
+networks:
+    opentelemetry:
+        name: opentelemetry
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1aamqqz8kefgalnc8qfe3f0muktr3ca9w37mcn2smyhz5v92t3fvsg5h2gj
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBucmYzbCtUT1RRc3piSC9n
+            M1VNcFVIZytIbHhZNEdrem9UQmNyOTdwSVdVCmpQakNtVEhqajZZeHhtK3lCb0tN
+            RzZMakV0N281NGsrR2hiT2h6UDZycjQKLS0tIFQ3ODcwbnA1T0tjYUZlTU52ekpT
+            VTcrV0toWXNsRkxISnJablFNL0gwNHcKgQUWxmGFsVj9CfvM82Qwp4J5bRNeko/0
+            eKsRF9rM9M1IzWgR2EDKu3afJ4FCSSp7WW7WkRfvOkKs8VCTYqp3kw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-09-12T20:54:43Z"
+    mac: ENC[AES256_GCM,data:zA+jej4949PWa9nmvic4CikHEYZi/z4KAVJjGwOWPjU4wd/7pKGjsdyX2htc++gfswFH4emUdYkreil+5T99mZ8E8bNiQVacbK1eRhxraVuV0tn2RdX2Ppu+lQswWdN11iKkBoYbPDgonot56rHG4E56+ogfe3cE1xGoj/i8P2A=,iv:fs3ewnoSybfh4i2zw3r3vnCnzVP5IJ8cFnf/BVxoGtc=,tag:ommVo1vv2WTyL4cWGlSEEg==,type:str]
+    pgp: []
+    encrypted_regex: ^(GRAFANA_CLOUD_API_TOKEN)$
+    version: 3.7.3

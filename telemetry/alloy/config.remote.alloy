@@ -1,0 +1,11 @@
+remotecfg {
+    url            = "https://fleet-management-prod-011.grafana.net"
+    name           = constants.hostname
+    attributes     = {"cluster" = "prod", "purpose" = "demo"}
+    // poll_frequency = "5m"
+
+    basic_auth {
+        username = "1824345"
+        password = sys.env("GRAFANA_CLOUD_API_TOKEN")
+    }
+}
