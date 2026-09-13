@@ -1,0 +1,34 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+processors:
+  batch:
+    send_batch_size: 100
+
+exporters:
+  otlp_http:
+    endpoint: https://otlp-gateway-prod-eu-west-2.grafana.net/otlp
+    headers:
+      Authorization: "Basic ${env:GCLOUD_BASIC_AUTH_BASE64}"
+
+extensions:
+  health_check:
+
+service:
+  extensions: [health_check]
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp_http]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp_http]
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp_http]

@@ -5,7 +5,7 @@ This is a demo repository.
 Add OTeL requirements (once):
 
 ```bash
-uv run opentelemetry-bootstrap -a requirements | uv add --group otlp --requirement -
+uv run opentelemetry-bootstrap -a requirements | uv add --group otel --requirement -
 ```
 
 Launch the application:

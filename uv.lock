@@ -357,7 +357,7 @@ dev = [
     { name = "pytest-cov" },
     { name = "ruff" },
 ]
-otlp = [
+otel = [
     { name = "opentelemetry-instrumentation-asyncio" },
     { name = "opentelemetry-instrumentation-click" },
     { name = "opentelemetry-instrumentation-dbapi" },
@@ -392,7 +392,7 @@ dev = [
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "ruff", specifier = ">=0.16.6" },
 ]
-otlp = [
+otel = [
     { name = "opentelemetry-instrumentation-asyncio", specifier = "==0.65b0" },
     { name = "opentelemetry-instrumentation-click", specifier = "==0.65b0" },
     { name = "opentelemetry-instrumentation-dbapi", specifier = "==0.65b0" },
