@@ -1,0 +1,45 @@
+name: opentelemetry-opamp
+services:
+    opentelemetry-collector-opamp:
+        image: otel/opentelemetry-collector-contrib-opampsupervisor:${OTEL_COLLECTOR_VERSION}
+        build:
+            context: .
+            args:
+                OTEL_COLLECTOR_VERSION: ${OTEL_COLLECTOR_VERSION}
+        container_name: opentelemetry-collector-opamp
+        hostname: opentelemetry-collector-opamp
+        environment:
+            GCLOUD_BASIC_AUTH_BASE64: ENC[AES256_GCM,data:y3WDpHCJVTNA6Z/O+sDHssAGH5UXwlFEk54qrZLJSjZw2GEkPO3W7SbKzTefpwb9qpghZoXbDSbWLc3L6hVcPQqNmLJzScqR5xgKkuxoLL31z8zzsgIUZaPXAVl79/D2oemi6allnIU9htNkvkoQhW7TsgJC47e45qdvqjHeF1GiUm5LpqEch/kKVf6DQqPH5E7xl1SrvcArzIJ+F4T7KTbg9dNaBC7DS5qS60XT/Cbaayt7DsUOnvh3N5b+wkKkN4Aaa/nSs7um6tKY9cBgXlPwu2vrU4SybS1jxQ==,iv:QxREYfij6Ks0m4DMKSzlmcc7Z+5AbDA/n2P4c8nn7P8=,tag:f1K/1VWG35ATbtmYR8yyOA==,type:str]
+        volumes:
+            - ./supervisor.yaml:/etc/otel/supervisor.yaml
+            - opentelemetry-opamp:/etc/otel/supervisor-data
+        ports:
+            - 4317:4317
+        networks:
+            - opentelemetry-opamp
+volumes:
+    opentelemetry-opamp:
+        name: opentelemetry-opamp
+networks:
+    opentelemetry-opamp:
+        name: opentelemetry-opamp
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1aamqqz8kefgalnc8qfe3f0muktr3ca9w37mcn2smyhz5v92t3fvsg5h2gj
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDdVpYRzZkU0h1OHhjNlpr
+            Wm9sWnZTMGIxWi9CYnc2TE5ESTUvT2ZZM0ZrCkJ1cUsyTUY3bUxkRFZFRmIvYmZ0
+            a2tLRHNZTUE3TEpKZ1I4VGJtcFYveDgKLS0tIEs4Z3VocjcxZVJGRGVxdi90M2s3
+            eW9TQ0w0S0dFWDB2N0MyTUpvU2V0VVEKwevQe4QcOM7yq+pMJbdjNPNyaqvtBI7Q
+            r1qBI/CKGdv+lYdYcU3DM582p2n7/Baj2Pxz5INSL+s+35iGayCSWg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-09-13T23:07:28Z"
+    mac: ENC[AES256_GCM,data:rZRFLCwJeeDFXP87EfC7FKEQNjmJGJxmArTzEhwyhBdZ1x4D7oE8O7BrmYo4LUnOr+jzu7sY9e1JODKTJCtFWYhTPWuYAhCvNK28c2alpNXZ1Ezz9nKFEDcrx76tbIoNnI+ylrQVw2DmPlo8YuBscHcrqbZRftQe5MzZ0IDCO/U=,iv:hhZqGEKjiCaCgmPsDW1r5CvLL9xc5kZal9zbPmiZcgA=,tag:wbUCQ/4uY0bg4oFHyYFwew==,type:str]
+    pgp: []
+    encrypted_regex: ^(GRAFANA_CLOUD_API_TOKEN|GCLOUD_BASIC_AUTH_BASE64)$
+    version: 3.7.3
